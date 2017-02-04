@@ -49,15 +49,18 @@ int menu()
         return op;
 }
 
+
+void printTable(int***, int);
+
 bool checkTable(int*** table, int posx, int posy,int size)
 {
-	cout << "stk.";
 	if (table[posx][posy][1] == 9)
 		return true;
 
-	if(table[posx][posy][1] == 0)
+	if(table[posx][posy][0] == 0)
 	//retorna true si es una mina
 {
+	table[posx][posy][0] = 1;
 	if(posx == 0 && posy == 0)
 	{
 		if(checkTable(table, posx + 1, posy, size))
@@ -178,8 +181,9 @@ bool checkTable(int*** table, int posx, int posy,int size)
 		if(checkTable(table, posx, posy - 1, size))
 			table[posx][posy][1]++;
 	}
+	printTable(table,size);
+	cout << "\n\n";
 }
-	table[posx][posy][0] = 1;
 	return false;
 }
 
